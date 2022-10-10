@@ -14,16 +14,16 @@ while True:
     ret, frame = cap.read()
 
     #Convert Each Frame into Grayscale
-    cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+    gray= cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
     # Pass frame to our body classifier
     bodies = body_classifier.detectMultiScale(gray,1.2, 3)
     
     # Extract bounding boxes for any bodies identified
-    for(x,y,w,h) in faces:
+    for(x,y,w,h) in bodies:
         cv2.rectangle(frame,(x,y),(x+w, y+h),(255, 0, 0),2)
 
     # display the resulting frame
-    cv2.imshow('frame',frame)
+        cv2.imshow('frame',frame)
 
     if cv2.waitKey(1) == 32: #32 is the Space Key
         break
